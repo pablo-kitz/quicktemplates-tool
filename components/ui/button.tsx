@@ -17,6 +17,7 @@ const buttonVariants = cva("inline-flex items-center justify-center rounded-md t
 			default: "h-10 py-2 px-4",
 			sm: "h-9 px-2 rounded-md",
 			lg: "h-11 px-8 rounded-md",
+			round: "p-2 h-10 w-10 rounded-full",
 		},
 	},
 	defaultVariants: {
