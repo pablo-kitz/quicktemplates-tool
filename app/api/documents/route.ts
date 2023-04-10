@@ -3,15 +3,7 @@ import {NextApiRequest, NextApiResponse} from "next";
 
 const prisma = new PrismaClient();
 
-type ResponseData = [
-	{
-		id: string;
-		title: string;
-		text: string;
-	}
-];
-
-export async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
 	const docs = await prisma.document.findMany();
-	console.log(docs);
+	return new Response("response");
 }
