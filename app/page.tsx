@@ -1,14 +1,15 @@
 "use client";
 import {useState, useEffect} from "react";
 import {Button} from "@/components/ui/button";
-import {ChevronsUp, ClipboardType, FilePlus2, Github, Linkedin, PlusCircleIcon, Trash2} from "lucide-react";
+import {ClipboardType, PlusCircleIcon, Trash2} from "lucide-react";
 import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
 import {AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger} from "@/components/ui/alert-dialog";
 import {Toggle} from "@/components/ui/toggle";
-import {Switch} from "@/components/ui/switch";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
-import {v4 as uuidv4} from "uuid";
+import DocsSelect from "@/components/DocsSelect";
+import DocText from "@/components/DocText";
+import NavBar from "@/components/NavBar";
 
 type Document = {
 	id: string;
@@ -136,65 +137,61 @@ export default function Home() {
 	return (
 		<>
 			{/* Document Select / Document Create */}
-			<nav className="dark:from-gray-800/90 dark:via-gray-900/90 flex items-center bg-blue-400 px-8 py-4 text-black drop-shadow-md transition duration-700 dark:bg-gradient-to-tl dark:to-black/90 dark:shadow-2xl">
-				<div className="grow overflow-x-auto">
-					<ul className="flex flex-nowrap gap-4 overflow-x-auto scroll-smooth p-2">
-						{docs.map((doc) => (
-							<Toggle
-								key={doc.title}
-								onClick={() => handleSelectDoc(doc)}
-								size="sm">
-								{doc.title}
-							</Toggle>
-						))}
-					</ul>
-				</div>
-				<span className="flex-initial">
-					<Sheet
-						open={slideover}
-						onOpenChange={setSlideover}>
-						<SheetTrigger asChild>
-							<Button
-								size="square"
-								rounded="round">
-								<PlusCircleIcon />
-							</Button>
-						</SheetTrigger>
-						<SheetContent
-							position="right"
-							size="custom"
-							className="flex flex-col">
-							<SheetHeader>
-								<SheetTitle>Create Doc</SheetTitle>
-								<SheetDescription>Create your doc.</SheetDescription>
-							</SheetHeader>
-							<div className="bg-grey-100 flex grow flex-col justify-between divide-y dark:divide-none">
-								<div className="py-2 ">
-									<Input
-										id="title"
-										onChange={handleChange}
-									/>
-								</div>
-								<div className="h-full grow py-2">
-									<Textarea
-										className="border-gray-300 dark:bg-gray-700 h-full w-full resize-none rounded-md p-2 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-500 dark:text-white dark:drop-shadow-lg"
-										id="text"
-										value={newDoc.text}
-										onChange={handleChange}
-									/>
-								</div>
-								<div className="flex justify-around gap-2 py-2">
-									<Input onChange={handlePlaceholderChange} />
-									<Button onClick={handlePlaceholderSubmit}>Generar Placeholder</Button>
-								</div>
-								<div className="flex items-end justify-center py-2">
-									<Button onClick={handleDocSubmit}>Generar Doc</Button>
-								</div>
+			<NavBar>
+				<DocsSelect>
+					{docs.map((doc) => (
+						<Toggle
+							key={doc.title}
+							onClick={() => handleSelectDoc(doc)}
+							size="sm">
+							{doc.title}
+						</Toggle>
+					))}
+				</DocsSelect>
+				<Sheet
+					open={slideover}
+					onOpenChange={setSlideover}>
+					<SheetTrigger asChild>
+						<Button
+							size="square"
+							rounded="round">
+							<PlusCircleIcon />
+						</Button>
+					</SheetTrigger>
+					<SheetContent
+						position="right"
+						size="custom"
+						className="flex flex-col">
+						<SheetHeader>
+							<SheetTitle>Create Doc</SheetTitle>
+							<SheetDescription>Create your doc.</SheetDescription>
+						</SheetHeader>
+						<div className="bg-grey-100 flex grow flex-col justify-between divide-y dark:divide-none">
+							<div className="py-2 ">
+								<Input
+									id="title"
+									onChange={handleChange}
+								/>
 							</div>
-						</SheetContent>
-					</Sheet>
-				</span>
-			</nav>
+							<div className="h-full grow py-2">
+								<Textarea
+									className="border-gray-300 dark:bg-gray-700 h-full w-full resize-none rounded-md p-2 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-500 dark:text-white dark:drop-shadow-lg"
+									id="text"
+									value={newDoc.text}
+									onChange={handleChange}
+								/>
+							</div>
+							<div className="flex justify-around gap-2 py-2">
+								<Input onChange={handlePlaceholderChange} />
+								<Button onClick={handlePlaceholderSubmit}>Generar Placeholder</Button>
+							</div>
+							<div className="flex items-end justify-center py-2">
+								<Button onClick={handleDocSubmit}>Generar Doc</Button>
+							</div>
+						</div>
+					</SheetContent>
+				</Sheet>
+			</NavBar>
 			{/* Main View */}
 			<div className="flex flex-grow">
 				{/* Selection Check */}
@@ -226,7 +223,7 @@ export default function Home() {
 						</div>
 						{/* Document Text / Document Placeholders */}
 						<div className="flex flex-col gap-2 gap-x-6 md:flex-row">
-							<div className="border-grey-300 dark:bg-gray-700 w-full whitespace-pre-line rounded-xl border border-neutral-400 p-4 text-sm dark:border-blue-500 dark:text-white dark:drop-shadow-lg sm:text-base">{selectDoc.text}</div>
+							<DocText>{selectDoc.text}</DocText>
 							<div className="flex flex-col gap-2">
 								{selectDoc.placeholders.map((placeholder) => {
 									return (
@@ -253,7 +250,7 @@ export default function Home() {
 						{/* Output */}
 						{currentOutput && (
 							<div className="relative flex-grow">
-								<div className="border-grey-300 dark:bg-gray-700 w-full  whitespace-pre-line rounded-xl border border-neutral-400 bg-white p-4 dark:border-blue-500 dark:text-white dark:drop-shadow-lg">{currentOutput}</div>
+								<DocText>{currentOutput}</DocText>
 								<div className="absolute right-2 top-2">
 									<Button
 										variant="ghost"
