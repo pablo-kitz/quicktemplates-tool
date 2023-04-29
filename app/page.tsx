@@ -93,10 +93,11 @@ export default function Home() {
 
 	const handleSelectDoc = (doc: Document) => {
 		if (selectDoc == doc) {
-			console.log("they are the same");
 			setSelectDoc(null);
+			setCurrentOutput("");
 		} else {
 			setSelectDoc(doc);
+			setCurrentOutput("");
 		}
 	};
 
@@ -105,6 +106,7 @@ export default function Home() {
 		localStorage.removeItem(doc.id);
 		setDocs(deleteDoc);
 		setSelectDoc(null);
+		setCurrentOutput("");
 	};
 
 	const [replacementValues, setReplacementValues] = useState<Map<string, string>>(new Map());
@@ -152,7 +154,9 @@ export default function Home() {
 						open={slideover}
 						onOpenChange={setSlideover}>
 						<SheetTrigger asChild>
-							<Button size="round">
+							<Button
+								size="square"
+								rounded="round">
 								<PlusCircleIcon />
 							</Button>
 						</SheetTrigger>
@@ -197,13 +201,14 @@ export default function Home() {
 				{selectDoc ? (
 					<div className="m-4 flex flex-grow flex-col gap-2">
 						{/* Title / Document Delete */}
-						<div className="align-center flex justify-between text-2xl sm:mx-16">
-							<div className="text-gray-800 inline pt-1 align-middle font-bold dark:text-white">{selectDoc.title}</div>
+						<div className=" flex items-center justify-between text-2xl sm:mx-16">
+							<div className="text-gray-800 font-bold dark:text-white">{selectDoc.title}</div>
 							<AlertDialog>
 								<AlertDialogTrigger asChild>
 									<Button
 										variant="destructive"
-										size="round">
+										size="squaresm"
+										rounded="round">
 										<Trash2 />
 									</Button>
 								</AlertDialogTrigger>
@@ -221,7 +226,7 @@ export default function Home() {
 						</div>
 						{/* Document Text / Document Placeholders */}
 						<div className="flex flex-col gap-2 gap-x-6 md:flex-row">
-							<div className="border-grey-300 dark:bg-gray-700 w-full whitespace-pre-line rounded-xl border p-4 text-sm dark:border-blue-500 dark:text-white dark:drop-shadow-lg sm:text-base">{selectDoc.text}</div>
+							<div className="border-grey-300 dark:bg-gray-700 w-full whitespace-pre-line rounded-xl border border-neutral-400 p-4 text-sm dark:border-blue-500 dark:text-white dark:drop-shadow-lg sm:text-base">{selectDoc.text}</div>
 							<div className="flex flex-col gap-2">
 								{selectDoc.placeholders.map((placeholder) => {
 									return (
@@ -246,16 +251,19 @@ export default function Home() {
 							</Button>
 						</div>
 						{/* Output */}
-						<div className="relative flex-grow">
-							<div className="border-grey-300 dark:bg-gray-700 w-full  whitespace-pre-line rounded-xl border bg-white p-4 dark:border-blue-500 dark:text-white dark:drop-shadow-lg">{selectDoc.title}</div>
-							<div className="absolute right-2 top-2">
-								<Button
-									variant="ghost"
-									size="round">
-									<ClipboardType />
-								</Button>
+						{currentOutput && (
+							<div className="relative flex-grow">
+								<div className="border-grey-300 dark:bg-gray-700 w-full  whitespace-pre-line rounded-xl border border-neutral-400 bg-white p-4 dark:border-blue-500 dark:text-white dark:drop-shadow-lg">{currentOutput}</div>
+								<div className="absolute right-2 top-2">
+									<Button
+										variant="ghost"
+										size="square"
+										rounded="round">
+										<ClipboardType />
+									</Button>
+								</div>
 							</div>
-						</div>
+						)}
 					</div>
 				) : (
 					// Instructions
@@ -264,7 +272,8 @@ export default function Home() {
 						<div className="flex items-center justify-center gap-2">
 							To start, try creating a document
 							<Button
-								size="round"
+								size="square"
+								rounded="round"
 								disabled={true}>
 								<PlusCircleIcon />
 							</Button>

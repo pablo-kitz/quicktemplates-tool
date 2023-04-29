@@ -15,14 +15,20 @@ const buttonVariants = cva("inline-flex items-center justify-center rounded-md t
 		},
 		size: {
 			default: "h-10 py-2 px-4",
-			sm: "h-9 px-2 rounded-md",
-			lg: "h-11 px-8 rounded-md",
-			round: "p-2 h-10 w-10 rounded-full",
+			sm: "h-9 px-2 ",
+			lg: "h-11 px-8 ",
+			square: "p-2 h-10 w-10",
+			squaresm: "p-2 h-8 w-8",
+		},
+		rounded: {
+			md: "rounded-md",
+			round: "rounded-full",
 		},
 	},
 	defaultVariants: {
 		variant: "default",
 		size: "default",
+		rounded: "round",
 	},
 });
 
