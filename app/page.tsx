@@ -166,7 +166,7 @@ export default function Home() {
 							<SheetTitle>Create Doc</SheetTitle>
 							<SheetDescription>Create your doc.</SheetDescription>
 						</SheetHeader>
-						<div className="bg-grey-100 flex grow flex-col justify-between divide-y dark:divide-none">
+						<div className="bg-grey-100 flex grow flex-col justify-between">
 							<div className="py-2 ">
 								<Input
 									id="title"
@@ -175,15 +175,19 @@ export default function Home() {
 							</div>
 							<div className="h-full grow py-2">
 								<Textarea
-									className="border-gray-300 dark:bg-gray-700 h-full w-full resize-none rounded-md p-2 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-500 dark:text-white dark:drop-shadow-lg"
+									className="dark:bg-gray-700 h-full w-full resize-none rounded-md border-neutral-300 p-2 ring-neutral-300 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-500 dark:text-white dark:drop-shadow-lg"
 									id="text"
 									value={newDoc.text}
 									onChange={handleChange}
 								/>
 							</div>
-							<div className="flex justify-around gap-2 py-2">
+							<div className="flex justify-between gap-2 py-2">
 								<Input onChange={handlePlaceholderChange} />
-								<Button onClick={handlePlaceholderSubmit}>Generar Placeholder</Button>
+								<Button
+									onClick={handlePlaceholderSubmit}
+									size="lg">
+									Add Placeholder
+								</Button>
 							</div>
 							<div className="flex items-end justify-center py-2">
 								<Button onClick={handleDocSubmit}>Generar Doc</Button>
@@ -193,10 +197,10 @@ export default function Home() {
 				</Sheet>
 			</NavBar>
 			{/* Main View */}
-			<div className="flex flex-grow">
+			<div className="flex flex-grow sm:justify-center">
 				{/* Selection Check */}
 				{selectDoc ? (
-					<div className="m-4 flex flex-grow flex-col gap-2">
+					<div className="m-4 flex flex-grow flex-col gap-6 sm:w-10/12 sm:flex-grow-0">
 						{/* Title / Document Delete */}
 						<div className=" flex items-center justify-between text-2xl sm:mx-16">
 							<div className="text-gray-800 font-bold dark:text-white">{selectDoc.title}</div>
@@ -222,9 +226,9 @@ export default function Home() {
 							</AlertDialog>
 						</div>
 						{/* Document Text / Document Placeholders */}
-						<div className="flex flex-col gap-2 gap-x-6 md:flex-row">
+						<div className="flex flex-col gap-2 gap-x-6 sm:flex-row">
 							<DocText>{selectDoc.text}</DocText>
-							<div className="flex flex-col gap-2">
+							<div className="flex flex-col justify-center gap-2">
 								{selectDoc.placeholders.map((placeholder) => {
 									return (
 										<Input
@@ -240,7 +244,7 @@ export default function Home() {
 							</div>
 						</div>
 						{/* Generate Button */}
-						<div className="flex justify-center">
+						<div className="flex justify-center py-2">
 							<Button
 								onClick={handleGenerateDoc}
 								variant="outline">
@@ -249,9 +253,9 @@ export default function Home() {
 						</div>
 						{/* Output */}
 						{currentOutput && (
-							<div className="relative flex-grow">
+							<div>
 								<DocText>{currentOutput}</DocText>
-								<div className="absolute right-2 top-2">
+								<div className="flex justify-end py-2">
 									<Button
 										variant="ghost"
 										size="square"
