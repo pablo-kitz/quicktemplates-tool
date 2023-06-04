@@ -1,17 +1,14 @@
 "use client";
-import {useState, useEffect} from "react";
-import {Button} from "@/components/ui/button";
-import {ClipboardType, PlusCircleIcon, Trash2} from "lucide-react";
-import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
-import {AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger} from "@/components/ui/alert-dialog";
-import {Toggle} from "@/components/ui/toggle";
-import {Input} from "@/components/ui/input";
-import {Textarea} from "@/components/ui/textarea";
+
+import { useState, useEffect } from "react";
+import { ClipboardType, PlusCircleIcon, Trash2 } from "lucide-react";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, Button, Toggle, Input } from "@/components/ui/index";
 import DocsSelect from "@/components/DocsSelect";
 import DocText from "@/components/DocText";
 import NavBar from "@/components/NavBar";
+import DocCreator from "@/components/DocCreator";
 
-type Document = {
+export type Document = {
 	id: string;
 	title: string;
 	text: string;
@@ -19,6 +16,8 @@ type Document = {
 };
 
 export default function Home() {
+	// Translations
+
 	// Docs State Management
 	const [docs, setDocs] = useState<Document[]>([]);
 
@@ -39,56 +38,8 @@ export default function Home() {
 		setDocs(getDocs); // set docs directly to getDocs
 	}, []);
 
-	const [newDoc, setNewDoc] = useState<Document>({
-		id: "",
-		title: "",
-		text: "",
-		placeholders: [],
-	});
-	//TODO: Usar Map
-	const [newPlaceholder, setNewPlaceholder] = useState("");
-
 	// UI State Management
 	const [slideover, setSlideover] = useState(false);
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		const field = e.target.id;
-		setNewDoc((prev) => ({...prev, [field]: e.target.value}));
-	};
-
-	const handlePlaceholderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setNewPlaceholder(e.target.value);
-	};
-
-	const handleDocSubmit = () => {
-		setNewDoc((prev) => {
-			const updatedDoc = {...prev, id: `doc_${localStorage.length}`};
-			localStorage.setItem(updatedDoc.id, JSON.stringify(updatedDoc));
-			setDocs([...docs, updatedDoc]);
-			return {
-				id: "",
-				title: "",
-				text: "",
-				placeholders: [],
-			};
-		});
-		setSlideover(false);
-	};
-
-	const handlePlaceholderSubmit = () => {
-		if (newPlaceholder === "") {
-			// TODO:Feedback visual de error
-			throw new Error("placeholder empty");
-		} else {
-			const regexPattern = /\s$/; // Validación de espacios vacios
-			setNewDoc((prev) => ({
-				...prev,
-				text: regexPattern.test(prev.text) ? prev.text + `{${newPlaceholder}}` : prev.text + " " + `{${newPlaceholder}}`, // Add the placeholderName string to the docText textarea
-				placeholders: [...prev.placeholders, newPlaceholder],
-			}));
-			setNewPlaceholder("");
-		}
-	};
 
 	const [selectDoc, setSelectDoc] = useState<Document | null>(null);
 
@@ -113,7 +64,7 @@ export default function Home() {
 	const [replacementValues, setReplacementValues] = useState<Map<string, string>>(new Map());
 
 	const updateReplacementValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const {name, value} = e.target;
+		const { name, value } = e.target;
 		setReplacementValues(replacementValues.set(name, value));
 		console.log(replacementValues);
 	};
@@ -148,53 +99,12 @@ export default function Home() {
 						</Toggle>
 					))}
 				</DocsSelect>
-				<Sheet
-					open={slideover}
-					onOpenChange={setSlideover}>
-					<SheetTrigger asChild>
-						<Button
-							size="square"
-							rounded="round">
-							<PlusCircleIcon />
-						</Button>
-					</SheetTrigger>
-					<SheetContent
-						position="right"
-						size="custom"
-						className="flex flex-col">
-						<SheetHeader>
-							<SheetTitle>Create Doc</SheetTitle>
-							<SheetDescription>Create your doc.</SheetDescription>
-						</SheetHeader>
-						<div className="bg-grey-100 flex grow flex-col justify-between">
-							<div className="py-2 ">
-								<Input
-									id="title"
-									onChange={handleChange}
-								/>
-							</div>
-							<div className="h-full grow py-2">
-								<Textarea
-									className="dark:bg-gray-700 h-full w-full resize-none rounded-md border-neutral-300 p-2 ring-neutral-300 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-500 dark:text-white dark:drop-shadow-lg"
-									id="text"
-									value={newDoc.text}
-									onChange={handleChange}
-								/>
-							</div>
-							<div className="flex justify-between gap-2 py-2">
-								<Input onChange={handlePlaceholderChange} />
-								<Button
-									onClick={handlePlaceholderSubmit}
-									size="lg">
-									Add Placeholder
-								</Button>
-							</div>
-							<div className="flex items-end justify-center py-2">
-								<Button onClick={handleDocSubmit}>Generar Doc</Button>
-							</div>
-						</div>
-					</SheetContent>
-				</Sheet>
+				<DocCreator
+					slideover={slideover}
+					setSlideover={setSlideover}
+					docs={docs}
+					setDocs={setDocs
+					} />
 			</NavBar>
 			{/* Main View */}
 			<div className="flex flex-grow sm:justify-center">
