@@ -1,5 +1,7 @@
 import { LandingConfig } from "@/types"
 
+// TODO: What is this for?
+
 export const landingConfig: LandingConfig = {
   mainNav: [
     {

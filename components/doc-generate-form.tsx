@@ -34,7 +34,7 @@ export default function DocumentGenerateForm({ document, placeholders }: Documen
         <div className=" m-4 p-4 h-full mx-auto rounded backdrop-blur-lg flex flex-grow flex-col gap-6 sm:w-10/12 sm:flex-grow-0">
           <div className=" flex items-center justify-between text-2xl sm:mx-16">
             <div className="text-gray-800 font-bold dark:text-white">{document.title}</div>
-            <DocDelete document={document} />
+            <DocDelete document={{ id: document.id, title: document.title }} />
           </div>
           <div className="flex justify-between gap-2 gap-x-6 sm:flex-row">
             <div className="w-full">

@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
 				<ThemeProvider>
 					{children}
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>
