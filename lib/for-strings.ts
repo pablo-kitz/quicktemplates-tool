@@ -1,0 +1,16 @@
+export const forStrings: string[] = [
+  "commonly used templates",
+  "ordinary script samples",
+  "everyday message clichés",
+  "warm greetings",
+  "prose skeletons",
+  "dull phraseology formats",
+  "routine word clichés",
+  "generic wording patterns",
+  "grammatical fossils",
+  "stone tablet inscriptions",
+  "prehistoric scribbles",
+  "archaic word carvings",
+  "outdated telegram copies",
+  "archaic smoke signals",
+]

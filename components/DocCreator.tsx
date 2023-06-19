@@ -1,12 +1,14 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Button, Input, Textarea } from "@/components/ui/index";
 import { PlusCircleIcon } from "lucide-react";
-import { Dispatch, SetStateAction, useCallback, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Document } from "@/app/page";
+import TextArea from "./TextArea";
+import { DocForm } from "./doc-form";
 
 type DocCreatorProps = {
   slideover: boolean,
-  setSlideover: Dispatch<SetStateAction<boolean>>,
   docs: Document[],
+  setSlideover: Dispatch<SetStateAction<boolean>>,
   setDocs: Dispatch<SetStateAction<Document[]>>,
 }
 
@@ -18,6 +20,7 @@ const DocCreator = ({ slideover, setSlideover, docs, setDocs }: DocCreatorProps)
     text: "",
     placeholders: [],
   });
+  const [emptyPlaceholder, setEmptyPlaceholder] = useState(false);
 
   //TODO: Usar Map
   const [newPlaceholder, setNewPlaceholder] = useState("");
@@ -32,6 +35,12 @@ const DocCreator = ({ slideover, setSlideover, docs, setDocs }: DocCreatorProps)
   };
 
   const handleDocSubmit = () => {
+    if (!newDoc.title || !newDoc.text) {
+      // TODO:Feedback visual de error
+    }
+    if (!newDoc.placeholders) {
+      // TODO:Esta por generar un documento sin placeholders
+    }
     setNewDoc((prev) => {
       const updatedDoc = { ...prev, id: `doc_${localStorage.length}` };
       localStorage.setItem(updatedDoc.id, JSON.stringify(updatedDoc));
@@ -51,10 +60,11 @@ const DocCreator = ({ slideover, setSlideover, docs, setDocs }: DocCreatorProps)
       // TODO:Feedback visual de error
       throw new Error("placeholder empty");
     } else {
-      const regexPattern = /\s$/; // Validación de espacios vacios
+      const regexPattern = /\s$/; // " " validation
       setNewDoc((prev) => ({
         ...prev,
-        text: regexPattern.test(prev.text) ? prev.text + `{${newPlaceholder}}` : prev.text + " " + `{${newPlaceholder}}`, // Add the placeholderName string to the docText textarea
+        // Add the placeholderName string to the docText textarea
+        text: regexPattern.test(prev.text) ? prev.text + `{${newPlaceholder}}` : prev.text + " " + `{${newPlaceholder}}`,
         placeholders: [...prev.placeholders, newPlaceholder],
       }));
       setNewPlaceholder("");
@@ -81,8 +91,10 @@ const DocCreator = ({ slideover, setSlideover, docs, setDocs }: DocCreatorProps)
             <SheetTitle>New Document</SheetTitle>
             <SheetDescription>Create a new document</SheetDescription>
           </SheetHeader>
+          <DocForm />
+          {/*
           <div className="bg-grey-100 flex grow flex-col justify-between">
-            <div className="py-2 ">
+            <div className="py-2">
               <Input
                 id="title"
                 placeholder="Document Title"
@@ -90,18 +102,13 @@ const DocCreator = ({ slideover, setSlideover, docs, setDocs }: DocCreatorProps)
               />
             </div>
             <div className="h-full grow py-2">
-              <Textarea
-                className="dark:bg-gray-700 h-full w-full resize-none rounded-md border-neutral-300 p-2 ring-neutral-300 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-500 dark:text-white dark:drop-shadow-lg"
-                id="text"
-                placeholder="Document Text"
-                value={newDoc.text}
-                onChange={handleChange}
-              />
+              <TextArea value={newDoc.text} handleChange={handleChange} />
             </div>
             <div className="flex justify-between gap-2 py-2">
               <Input
                 onChange={handlePlaceholderChange}
                 placeholder="New Placeholder"
+                variant="danger"
               />
               <Button
                 onClick={handlePlaceholderSubmit}
@@ -113,6 +120,7 @@ const DocCreator = ({ slideover, setSlideover, docs, setDocs }: DocCreatorProps)
               <Button onClick={handleDocSubmit}>Save Document</Button>
             </div>
           </div>
+        */}
         </SheetContent>
       </Sheet>
     </>

@@ -1,26 +1,28 @@
-import React, { useCallback, useState } from 'react'
-import { createPortal } from 'react-dom'
-import { useTextSelection } from '@/hooks/use-text-selection'
+'use client'
 
-type Props = {
-  children?: React.ReactNode
+import { useTextSelection } from '@/hooks/use-text-selection'
+import React, { FunctionComponent, ReactNode } from 'react'
+import { createPortal } from 'react-dom'
+
+interface PortalProps {
+  children: ReactNode;
 }
 
-const Portal = ({ children }: Props) => {
-  return createPortal(children, document.body)
+
+const Portal: FunctionComponent<PortalProps> = ({ children }: any) => {
+  return createPortal(children, document.getElementById('text') as HTMLElement)
 }
 
 export const Popover = ({ target }: { target?: HTMLElement }) => {
-  const { isCollapsed, clientRect, textContent } = useTextSelection(target)
-  console.log(textContent)
+  const { isCollapsed, clientRect } = useTextSelection(target)
+  console.log(isCollapsed, clientRect)
 
   if (clientRect == null || isCollapsed) return null
 
-  return (
-    <Portal>
-      <button >
-        share me
-      </button>
-    </Portal>
-  )
+
+  return <Portal>
+    <button className={`absolute text-center text-white bg-blue-300 rounded top-[${clientRect.top - clientRect.height}] left-[${clientRect.x}] p-2`}>
+      share me
+    </button>
+  </Portal>
 }

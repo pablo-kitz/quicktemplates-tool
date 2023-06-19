@@ -3,10 +3,8 @@
 import { useState, useEffect } from "react";
 import { ClipboardType, PlusCircleIcon, Trash2 } from "lucide-react";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, Button, Toggle, Input } from "@/components/ui/index";
-import DocsSelect from "@/components/DocsSelect";
-import DocText from "@/components/DocText";
-import NavBar from "@/components/NavBar";
 import DocCreator from "@/components/DocCreator";
+import { DocForm } from "@/components/doc-form";
 
 export type Document = {
 	id: string;
@@ -88,24 +86,6 @@ export default function Home() {
 	return (
 		<>
 			{/* Document Select / Document Create */}
-			<NavBar>
-				<DocsSelect>
-					{docs.map((doc) => (
-						<Toggle
-							key={doc.title}
-							onClick={() => handleSelectDoc(doc)}
-							size="sm">
-							{doc.title}
-						</Toggle>
-					))}
-				</DocsSelect>
-				<DocCreator
-					slideover={slideover}
-					setSlideover={setSlideover}
-					docs={docs}
-					setDocs={setDocs
-					} />
-			</NavBar>
 			{/* Main View */}
 			<div className="flex flex-grow sm:justify-center">
 				{/* Selection Check */}
@@ -137,7 +117,6 @@ export default function Home() {
 						</div>
 						{/* Document Text / Document Placeholders */}
 						<div className="flex flex-col gap-2 gap-x-6 sm:flex-row">
-							<DocText>{selectDoc.text}</DocText>
 							<div className="flex flex-col justify-center gap-2">
 								{selectDoc.placeholders.map((placeholder) => {
 									return (
@@ -164,7 +143,6 @@ export default function Home() {
 						{/* Output */}
 						{currentOutput && (
 							<div>
-								<DocText>{currentOutput}</DocText>
 								<div className="flex justify-end py-2">
 									<Button
 										variant="ghost"
@@ -176,31 +154,7 @@ export default function Home() {
 							</div>
 						)}
 					</div>
-				) : (
-					// Instructions
-					<div className="flex flex-grow flex-col items-center justify-center gap-8 text-center text-neutral-300">
-						<div>This tool is made to simplify commonly used text templates</div>
-						<div className="flex items-center justify-center gap-2">
-							To start, try creating a document
-							<Button
-								size="square"
-								rounded="round"
-								disabled={true}>
-								<PlusCircleIcon />
-							</Button>
-						</div>
-						{docs[0] && (
-							<div className="flex items-center justify-center gap-2">
-								Or selecting one from your personal library
-								<Toggle
-									size="sm"
-									disabled={true}>
-									{docs[0].title}
-								</Toggle>
-							</div>
-						)}
-					</div>
-				)}
+				) : null}
 			</div>
 		</>
 	);

@@ -1,10 +1,10 @@
 import * as React from "react";
 
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> { }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({className, ...props}, ref) => {
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, ...props }, ref) => {
 	return (
 		<textarea
 			className={cn("bg-transparent flex h-20 w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-700 dark:text-neutral-50 dark:focus:ring-neutral-400 dark:focus:ring-offset-neutral-900", className)}
@@ -15,4 +15,4 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({classNam
 });
 Textarea.displayName = "Textarea";
 
-export {Textarea};
+export { Textarea };
