@@ -52,7 +52,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
           }}
         />
       </MainNav>
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col container gap-6">
         <BackgroundDecoration />
         {children}
         <DocCreate />
