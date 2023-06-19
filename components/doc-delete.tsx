@@ -19,6 +19,7 @@ async function deleteDocument(postId: string) {
       description: "Your post was not deleted. Please try again.",
       variant: "destructive",
     })
+    return false
   }
 
   return true
@@ -57,13 +58,14 @@ export function DocDelete({ document }: DocDeleteProps) {
                 event.preventDefault()
                 setIsDeleteLoading(true)
 
-                console.log(document.id)
                 const deleted = await deleteDocument(document.id)
 
                 if (deleted) {
                   setIsDeleteLoading(false)
                   setShowDeleteAlert(false)
                   router.push("/dashboard")
+                } else {
+                  setIsDeleteLoading(false)
                 }
               }}
               className="bg-red-600 focus:ring-red-600"

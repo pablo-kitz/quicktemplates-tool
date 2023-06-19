@@ -49,6 +49,5 @@ async function verifyCurrentUserHasAccessToDocument(docId: string) {
     },
   })
 
-  console.log(count)
   return count > 0
 }

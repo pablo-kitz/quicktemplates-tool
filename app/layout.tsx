@@ -30,7 +30,7 @@ export const metadata = {
 	authors: [
 		{
 			name: "Pablo Kitzberger",
-			url: siteConfig.links.github
+			url: siteConfig.links.githubProfile
 		}
 	],
 	creator: "Pablo Kitzberger",

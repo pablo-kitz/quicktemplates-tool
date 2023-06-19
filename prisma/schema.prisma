@@ -70,7 +70,7 @@ model Document {
   createdAt     DateTime @default(now()) @map(name: "created_at")
   authorId      String
 
-  author        User @relation(fields: [authorId], references: [id])
+  author        User @relation(fields: [authorId], references: [id]) 
 
   @@map(name: "documents")
 }
@@ -85,5 +85,5 @@ model Placeholder {
   type          PlaceholderTypes
   documentId    String
 
-  document      Document @relation(fields: [documentId], references: [id])
+  document      Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
 }

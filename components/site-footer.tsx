@@ -11,7 +11,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
     <footer className={cn(className)}>
       <div className="flex h-12 w-full items-center justify-start gap-4 justify-self-end bg-neutral-800 px-4 text-white md:px-8">
         <a
-          href={siteConfig.links.github}
+          href={siteConfig.links.githubProfile}
           target="_blank"
           rel="noopener noreferrer">
           <Button size="sm">

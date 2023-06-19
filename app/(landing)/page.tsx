@@ -13,7 +13,7 @@ import { WrapText } from "lucide-react"
 async function getGitHubStars(): Promise<string | null> {
   try {
     const response = await fetch(
-      "https://api.github.com/repos/pablo-kitz/quicktemplates-tool ",
+      siteConfig.links.githubRepo,
       {
         headers: {
           Accept: "application/vnd.github+json",
@@ -61,7 +61,7 @@ export default async function LandingPage() {
               Get Started
             </Link>
             <Link
-              href={siteConfig.links.github}
+              href={siteConfig.links.githubProfile}
               target="_blank"
               rel="noreferrer"
               className={cn("text-white hover:text-primary hover:shadow-2xl hover:shadow-pink-500 backdrop-blur-xl duration-500", buttonVariants({ variant: "outline", size: "lg" }))}
@@ -78,7 +78,7 @@ export default async function LandingPage() {
           </h2>
           {stars && (
             <Link
-              href={siteConfig.links.github}
+              href={siteConfig.links.githubRepo}
               target="_blank"
               rel="noreferrer"
               className="flex"

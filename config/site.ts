@@ -7,6 +7,7 @@ export const siteConfig: SiteConfig = {
   ogImage: "",
   links: {
     linkedin: "https://www.linkedin.com/in/pablo-kitzberger/",
-    github: "https://github.com/pablo-kitz/",
+    githubProfile: "https://github.com/pablo-kitz/",
+    githubRepo: "https://github.com/pablo-kitz/quicktemplates-tool",
   },
 }

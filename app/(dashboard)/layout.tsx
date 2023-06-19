@@ -18,6 +18,7 @@ interface DashboardLayoutProps {
 }
 
 export default async function DashboardLayout({ children }: DashboardLayoutProps) {
+
   const user = await getCurrentUser()
 
   if (!user) {
@@ -44,13 +45,15 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
             ))}
           </div>
         ) : null}
-        <UserAccountNav
-          user={{
-            name: user.name,
-            image: user.image,
-            email: user.email,
-          }}
-        />
+        <div className="ml-auto">
+          <UserAccountNav
+            user={{
+              name: user.name,
+              image: user.image,
+              email: user.email,
+            }}
+          />
+        </div>
       </MainNav>
       <div className="flex-1 flex flex-col container gap-6">
         <BackgroundDecoration />
