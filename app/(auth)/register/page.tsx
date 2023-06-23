@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { UserAuthForm } from "@/components/user-auth-form"
 import { TvIcon, WrapText } from "lucide-react"
-import BackgroundDecoration from "@/components/bg-decoration"
 import { MainNav } from "@/components/main-nav"
 
 export const metadata = {
@@ -15,7 +14,6 @@ export const metadata = {
 export default function RegisterPage() {
   return (
     <>
-      <BackgroundDecoration />
       <MainNav>
         <div className="ml-auto">
           <Link

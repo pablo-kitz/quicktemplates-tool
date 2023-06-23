@@ -7,7 +7,7 @@ export const shadcnPlugin = plugin(
     // colors
     addBase({
       ":root": {
-        "--background": "240, 7%, 97%",
+        "--background": "240, 50%, 95%",
         "--foreground": "0, 0%, 13%",
         "--muted": "210 40% 96.1%",
         "--muted-foreground": "215.4 16.3% 46.9%",
@@ -17,18 +17,18 @@ export const shadcnPlugin = plugin(
         "--input": "214.3 31.8% 91.4%",
         "--card": "0 0% 100%",
         "--card-foreground": "222.2 47.4% 11.2%",
-        "--primary": "222.2 47.4% 11.2%",
-        "--primary-foreground": "210 40% 98%",
+        "--primary": "222.2 88% 11.2%",
+        "--primary-foreground": "175 42% 88%",
         "--secondary": "210 40% 96.1%",
-        "--secondary-foreground": "222.2 47.4% 11.2%",
+        "--secondary-foreground": "17 10% 59%",
         "--accent": "210 40% 96.1%",
-        "--accent-foreground": "222.2 47.4% 11.2%",
+        "--accent-foreground": "60 16% 91%",
         "--destructive": "0 100% 50%",
         "--destructive-foreground": "210 40% 98%",
         "--ring": "215 20.2% 65.1%",
         "--radius": "0.5rem",
       },
-      ".dark": {
+      "[data-theme='dark']": {
         "--background": "224 71% 4%",
         "--foreground": "213 31% 91%",
         "--muted": "223 47% 11%",

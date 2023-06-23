@@ -1,6 +1,5 @@
 "use client"
 
-import BackgroundDecoration from "@/components/bg-decoration";
 import Instructions from "@/components/instructions";
 
 export default function DashboardPage() {

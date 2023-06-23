@@ -10,7 +10,6 @@ import { DocCreate } from "@/components/doc-create"
 import { DocItem } from "@/components/doc-item"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
-import BackgroundDecoration from "@/components/bg-decoration"
 
 
 interface DashboardLayoutProps {
@@ -56,7 +55,6 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
         </div>
       </MainNav>
       <div className="flex-1 flex flex-col container gap-6">
-        <BackgroundDecoration />
         {children}
         <DocCreate />
       </div>

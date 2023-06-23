@@ -12,6 +12,7 @@ const buttonVariants = cva("inline-flex items-center justify-center rounded-md t
 			subtle: "bg-neutral-100 text-neutral-900 hover:bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-100",
 			ghost: "bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:text-neutral-100/50 dark:hover:text-neutral-100 data-[state=open]:bg-transparent dark:data-[state=open]:bg-transparent",
 			link: "bg-transparent dark:bg-transparent underline-offset-4 hover:underline text-neutral-900 dark:text-neutral-100 hover:bg-transparent dark:hover:bg-transparent",
+			icon: "h-10 w-10",
 		},
 		size: {
 			default: "h-10 py-2 px-4",

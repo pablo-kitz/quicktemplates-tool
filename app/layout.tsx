@@ -5,6 +5,8 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui";
+import BackgroundDecoration from "@/components/bg-decoration";
+import { SiteFooter } from "@/components/site-footer";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -53,7 +55,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 			<body
 				className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
 				<ThemeProvider>
+					<BackgroundDecoration />
 					{children}
+					<SiteFooter />
 					<Toaster />
 				</ThemeProvider>
 			</body>

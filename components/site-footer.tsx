@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Button } from "./ui"
 import { Github, Linkedin } from "lucide-react"
+import { ModeToggle } from "./mode-toggle"
 // TODO: Index of Icons
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
@@ -14,7 +15,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           href={siteConfig.links.githubProfile}
           target="_blank"
           rel="noopener noreferrer">
-          <Button size="sm">
+          <Button size="sm" variant="icon">
             <Github />
           </Button>
         </a>
@@ -22,10 +23,11 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           href={siteConfig.links.linkedin}
           target="_blank"
           rel="noopener noreferrer">
-          <Button size="sm">
+          <Button size="sm" variant="icon">
             <Linkedin />
           </Button>
         </a>
+        <ModeToggle className="ml-auto" />
       </div>
     </footer>
   )
