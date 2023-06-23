@@ -41,7 +41,7 @@ const defaultState: TextSelectionState = {}
  * hook to get information about the current text selection
  * 
  */
-export function useTextSelection(target?: HTMLElement) {
+export function useTextSelection(target?: HTMLTextAreaElement) {
 
 	const [{
 		clientRect,
@@ -58,42 +58,50 @@ export function useTextSelection(target?: HTMLElement) {
 		const selection = window.getSelection()
 		let newState: TextSelectionState = {}
 
-		if (selection == null || !selection.rangeCount) {
+		if (selection == null) {
 			setState(newState)
 			return
 		}
 
-		const range = selection.getRangeAt(0)
-
-		if (target != null && !target.contains(range.commonAncestorContainer)) {
-			setState(newState)
-			return
+		if (target) {
+			let textarea: HTMLTextAreaElement = target
+			let start = textarea.selectionStart
+			let finish = textarea.selectionEnd
+			let sel = textarea.value.substring(start, finish)
+			newState.textContent = sel
 		}
 
-		if (range == null) {
-			setState(newState)
-			return
-		}
+		// const range = selection.getRangeAt(0)
+		// if (target != null && !target.contains(range.commonAncestorContainer)) {
+		// 	console.log('fuera de ref')
+		// 	setState(newState)
+		// 	return
+		// }
 
-		const contents = range.cloneContents()
+		// if (range == null) {
+		// 	setState(newState)
+		// 	return
+		// }
 
-		if (contents.textContent != null) {
-			newState.textContent = contents.textContent
-		}
+		// const contents = range.cloneContents()
 
-		const rects = range.getClientRects()
+		// if (contents.textContent != null) {
+		// 	newState.textContent = contents.textContent
+		// }
 
-		if (rects.length === 0 && range.commonAncestorContainer != null) {
-			const el = range.commonAncestorContainer as HTMLElement
-			newRect = roundValues(el.getBoundingClientRect().toJSON())
-		} else {
-			if (rects.length < 1) return
-			newRect = roundValues(rects[0].toJSON())
-		}
-		if (shallowDiff(clientRect, newRect)) {
-			newState.clientRect = newRect
-		}
-		newState.isCollapsed = range.collapsed
+		// const rects = range.getClientRects()
+
+		// if (rects.length === 0 && range.commonAncestorContainer != null) {
+		// 	const el = range.commonAncestorContainer as HTMLElement
+		// 	newRect = roundValues(el.getBoundingClientRect().toJSON())
+		// } else {
+		// 	if (rects.length < 1) return
+		// 	newRect = roundValues(rects[0].toJSON())
+		// }
+		// if (shallowDiff(clientRect, newRect)) {
+		// 	newState.clientRect = newRect
+		// }
+		// newState.isCollapsed = range.collapsed
 
 		setState(newState)
 	}, [target])
