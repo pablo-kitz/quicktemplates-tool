@@ -51,13 +51,13 @@
 		"react-i18next": "^12.2.0",
 		"tailwind-merge": "^1.12.0",
 		"tailwindcss": "3.3.1",
-		"tailwindcss-animate": "^1.0.6",
 		"typescript": "5.0.4",
 		"zod": "^3.21.4"
 	},
 	"devDependencies": {
 		"@hookform/devtools": "^4.3.1",
 		"@tailwindcss/typography": "^0.5.9",
-		"prisma": "^4.15.0"
+		"prisma": "^4.15.0",
+		"tailwindcss-animate": "^1.0.6"
 	}
 }
