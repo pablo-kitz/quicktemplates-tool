@@ -48,7 +48,7 @@ export default async function LandingPage() {
           />
           <h1 className="font-heading text-3xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
             Text templating for
-            {/* <LandingAnimation strings={forStrings} /> */}
+            <LandingAnimation strings={forStrings} />
           </h1>
           <p className="max-w-[42rem] leading-normal text-foreground sm:text-xl sm:leading-8">
             Sharing features and multiple types of placeholders coming soon.
