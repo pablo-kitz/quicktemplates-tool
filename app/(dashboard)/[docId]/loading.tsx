@@ -21,19 +21,6 @@ export default function Loading() {
         <div className="flex justify-center py-2">
           <Skeleton />
         </div>
-        {/* Output */}
-        {/* {currentOutput && (
-        <div>
-          <div className="flex justify-end py-2">
-            <Button
-              variant="ghost"
-              size="square"
-              rounded="round">
-              <ClipboardType />
-            </Button>
-          </div>
-        </div>
-      )} */}
       </div>
     </>
   )

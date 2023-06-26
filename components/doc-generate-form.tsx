@@ -5,6 +5,7 @@ import { Document, Placeholder } from "@prisma/client"
 import { ClipboardType } from "lucide-react"
 import { useForm } from "react-hook-form"
 
+import { ToClipboard } from "./to-clipboard"
 import { Button, Input } from "./ui"
 
 type DocumentGenerateFormProps = {
@@ -74,11 +75,7 @@ export default function DocumentGenerateForm({
             <div className="w-full whitespace-pre-line bg-muted rounded-xl border p-4 text-base shadow sm:text-sm">
               {output}
             </div>
-            <div className="absolute right-2 top-2">
-              <Button variant="outline" size="icon">
-                <ClipboardType />
-              </Button>
-            </div>
+            <ToClipboard output={output} className="absolute right-2 top-2" />
           </div>
         )}
       </>
