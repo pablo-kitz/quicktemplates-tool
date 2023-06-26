@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { Document, Placeholder } from "@prisma/client"
-import { ClipboardType } from "lucide-react"
 import { useForm } from "react-hook-form"
 
+import { HelpTooltip } from "./help-tooltip"
 import { ToClipboard } from "./to-clipboard"
 import { Button, Input } from "./ui"
 
@@ -43,7 +43,11 @@ export default function DocumentGenerateForm({
       <div className="w-full sm:w-3/5 whitespace-pre-line rounded-xl bg-muted border text-muted-foreground p-4 text-lg shadow sm:text-base lg:text-lg">
         {document.text}
       </div>
-      <div className="flex flex-col sm:w-2/6 justify-center gap-2">
+      <div className="flex flex-col sm:w-2/6 justify-center gap-2 relative">
+        <HelpTooltip
+          tooltipText="Complete the placeholders to create variations"
+          className="absolute -top-8 top right-2"
+        />
         {placeholders &&
           placeholders.map((placeholder, index) => {
             return (

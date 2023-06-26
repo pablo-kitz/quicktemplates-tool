@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import { useTextSelection } from "@/hooks/use-text-selection"
 import { toast } from "@/hooks/use-toast"
 
+import { HelpTooltip } from "./help-tooltip"
 import { PlaceholderAdder } from "./placeholder-adder"
 import {
   Button,
@@ -125,22 +126,28 @@ export function DocCreate() {
                 This field is required
               </span>
             )}
-            <textarea
-              placeholder="Document Text"
-              className={cn(
-                "flex h-20 w-full flex-1 resize-none rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            <div className="flex flex-1 relative">
+              <HelpTooltip
+                className="absolute top-2 right-2"
+                tooltipText="This would be the text you will be repeating frequently, to specify the parts that you wish to edit on each ocasion create a Placeholder"
+              />
+              <textarea
+                placeholder="Document Text"
+                className={cn(
+                  "w-full h-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                )}
+                {...rest}
+                ref={(e) => {
+                  ref(e)
+                  textareaRef.current = e
+                }}
+              />
+              {errors?.text && (
+                <span className="text-xs text-destructive">
+                  This field is required
+                </span>
               )}
-              {...rest}
-              ref={(e) => {
-                ref(e)
-                textareaRef.current = e
-              }}
-            />
-            {errors?.text && (
-              <span className="text-xs text-destructive">
-                This field is required
-              </span>
-            )}
+            </div>
             {placeholders.length > 0 && (
               <>
                 <div className="flex gap-2 items-center">

@@ -1,9 +1,7 @@
-import { TooltipTrigger } from "@radix-ui/react-tooltip"
-import { HelpCircle } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
-import { buttonVariants, Tooltip, TooltipContent } from "./ui"
+import { HelpTooltip } from "./help-tooltip"
+import { buttonVariants } from "./ui"
 
 type PlaceholderAdderProps = {
   textContent: string | undefined
@@ -20,19 +18,12 @@ export function PlaceholderAdder({
         {textContent ? (
           <div>{textContent}</div>
         ) : (
-          <div className="flex justify-between items-center text-muted-foreground/80">
+          <div className="flex text-sm md:text-base justify-between items-center text-muted-foreground">
             Select text to transform to placeholder
-            <Tooltip>
-              <TooltipTrigger>
-                <HelpCircle className="ml-4" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="text-sm">
-                  Placeholders are used for replacing parts of the document that
-                  may vary for every use
-                </p>
-              </TooltipContent>
-            </Tooltip>
+            <HelpTooltip
+              tooltipText="Placeholders are used for replacing parts of the document that may vary for every use"
+              className="ml-4"
+            />
           </div>
         )}
       </div>
