@@ -36,6 +36,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       const dbUser = await db.user.findFirst({
         where: {
+          // @ts-ignore
           email: token.email,
         },
       })

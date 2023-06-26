@@ -1,29 +1,25 @@
-
-import Link from "next/link"
-
 import * as React from "react"
+import Link from "next/link"
+import { WrapText } from "lucide-react"
+
 import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui"
-import LandingAnimation from "@/components/landing-animation"
 import { forStrings } from "@/lib/for-strings"
-import { WrapText } from "lucide-react"
+import { cn } from "@/lib/utils"
+import LandingAnimation from "@/components/landing-animation"
+import { buttonVariants } from "@/components/ui"
 
 async function getGitHubStars(): Promise<string | null> {
   try {
-    const response = await fetch(
-      siteConfig.links.githubRepo,
-      {
-        headers: {
-          Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${env.GITHUB_ACCESS_TOKEN}`,
-        },
-        next: {
-          revalidate: 60,
-        },
-      }
-    )
+    const response = await fetch(siteConfig.links.githubRepo, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${env.GITHUB_ACCESS_TOKEN}`,
+      },
+      next: {
+        revalidate: 60,
+      },
+    })
 
     if (!response?.ok) {
       return null
@@ -38,33 +34,45 @@ async function getGitHubStars(): Promise<string | null> {
 }
 
 export default async function LandingPage() {
+  // const stars = await getGitHubStars()
   const stars = 500
 
   return (
     <>
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-28">
-        <div className="flex mx-auto max-w-[64rem] flex-col items-center gap-4 text-center">
-          <WrapText className={cn("mx-auto h-14 w-14 border rounded-full p-2 text-white")} />
-          <h1 className="font-heading font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            Text templating for <h1>Test string</h1>
-            {/* TODO: Landing animation, check hydration errors 
-            <LandingAnimation strings={forStrings} /> */}
+        <div className="mx-auto flex max-w-[64rem] flex-col items-center gap-4 text-center">
+          <WrapText
+            className={cn(
+              "mx-auto h-16 w-16 rounded-full border p-2 text-foreground"
+            )}
+          />
+          <h1 className="font-heading text-3xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
+            Text templating for
+            {/* <LandingAnimation strings={forStrings} /> */}
           </h1>
           <p className="max-w-[42rem] leading-normal text-foreground sm:text-xl sm:leading-8">
-            Sharing features and multiple types of placeholders coming soon. Follow along on Github.
+            Sharing features and multiple types of placeholders coming soon.
+            Follow along on Github.
           </p>
           <div className="space-x-4">
             {/* TODO: Migrate to components with state to remove use client user-auth-form as reference */}
             <Link
               href="/dashboard"
-              className={cn("text-white hover:shadow-2xl hover:shadow-green-500 duration-500", buttonVariants({ size: "lg" }), "hover:bg-green-600/90 border-white hover:backdrop-blur-xl")}>
+              className={cn(
+                buttonVariants({ variant: "default", size: "lg" }),
+                ""
+              )}
+            >
               Get Started
             </Link>
             <Link
               href={siteConfig.links.githubProfile}
               target="_blank"
               rel="noreferrer"
-              className={cn("text-white hover:text-primary hover:shadow-2xl hover:shadow-pink-500 backdrop-blur-xl duration-500", buttonVariants({ variant: "outline", size: "lg" }))}
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "lg" }),
+                ""
+              )}
             >
               GitHub
             </Link>

@@ -7,7 +7,7 @@ import { db } from "@/lib/db"
 const documentCreateSchema = z.object({
   title: z.string(),
   text: z.string(),
-  placeholders: z.object({ name: z.string() }).optional(),
+  placeholders: z.array(z.object({ name: z.string() })).optional(),
 })
 
 export async function GET() {
@@ -24,7 +24,6 @@ export async function GET() {
         authorId: user.id,
       },
     })
-
     return new Response(JSON.stringify(documents))
   } catch (error) {
     return new Response(null, { status: 500 })
@@ -65,11 +64,13 @@ export async function POST(req: Request) {
       data: {
         title: body.title,
         text: body.text,
-        placeholders: body.placeholders,
-        authorId: session.user.id,
-      },
-      select: {
-        id: true,
+        authorId: user.id,
+        placeholders: {
+          create: body.placeholders?.map((p) => ({
+            name: p.name,
+            type: "Input",
+          })),
+        },
       },
     })
 

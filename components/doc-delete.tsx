@@ -1,12 +1,26 @@
 "use client"
 
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, Button, buttonVariants } from "./ui";
-import { Loader, Trash2 } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
-import * as React from "react";
-import { useRouter } from "next/navigation";
-import { Document } from "@prisma/client";
-import { cn } from "@/lib/utils";
+import * as React from "react"
+import { useRouter } from "next/navigation"
+import { Document } from "@prisma/client"
+import { Loader, Trash2 } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { toast } from "@/hooks/use-toast"
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button,
+  buttonVariants,
+} from "./ui"
 
 async function deleteDocument(postId: string) {
   const response = await fetch(`/api/docs/${postId}`, {
@@ -34,22 +48,25 @@ export function DocDelete({ document }: DocDeleteProps) {
   const [showDeleteAlert, setShowDeleteAlert] = React.useState<boolean>(false)
   const [isDeleteLoading, setIsDeleteLoading] = React.useState<boolean>(false)
 
-
   return (
     <>
       <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
         <AlertDialogTrigger asChild>
           <Button
-            className={cn("h-4 w-4", isDeleteLoading && "animate-spin", buttonVariants({ variant: "destructive", size: "squaresm", rounded: "round" }))}
             onClick={() => setShowDeleteAlert(true)}
+            variant="destructive"
+            size="iconsm"
           >
-            <Trash2 />
+            <Trash2 className="h-full w-full p-2" />
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Document</AlertDialogTitle>
-            <AlertDialogDescription>Are you sure you want to delete this document? It will be permanently removed. This action cannot be undone.</AlertDialogDescription>
+            <AlertDialogDescription>
+              Are you sure you want to delete this document? It will be
+              permanently removed. This action cannot be undone.
+            </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -68,7 +85,7 @@ export function DocDelete({ document }: DocDeleteProps) {
                   setIsDeleteLoading(false)
                 }
               }}
-              className="bg-red-600 focus:ring-red-600"
+              className={cn(buttonVariants({ variant: "destructive" }))}
             >
               {isDeleteLoading ? (
                 <Loader className="mr-2 h-4 w-4 animate-spin" />

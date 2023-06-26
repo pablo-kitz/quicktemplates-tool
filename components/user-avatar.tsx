@@ -1,8 +1,8 @@
 import { User } from "@prisma/client"
 import { AvatarProps } from "@radix-ui/react-avatar"
+import { UserCheckIcon } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { UserCheckIcon } from "lucide-react"
 
 interface UserAvatarProps extends AvatarProps {
   user: Pick<User, "image" | "name">

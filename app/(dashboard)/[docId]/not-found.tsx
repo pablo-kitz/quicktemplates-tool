@@ -3,7 +3,6 @@ import Link from "next/link"
 import { buttonVariants } from "@/components/ui/button"
 import { EmptyPlaceholder } from "@/components/not-found"
 
-
 export default function NotFound() {
   return (
     <EmptyPlaceholder className="mx-auto max-w-[800px]">

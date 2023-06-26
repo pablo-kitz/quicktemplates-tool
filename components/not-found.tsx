@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-interface EmptyPlaceholderProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface EmptyPlaceholderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function EmptyPlaceholder({
   className,
@@ -29,7 +29,7 @@ export function EmptyPlaceholder({
 //   extends Partial<React.SVGProps<SVGSVGElement>> {
 //   name: keyof typeof Icons
 // }
-// 
+//
 //
 // EmptyPlaceholder.Icon = function EmptyPlaceHolderIcon({
 //   name,
@@ -50,7 +50,7 @@ export function EmptyPlaceholder({
 // }
 
 interface EmptyPlacholderTitleProps
-  extends React.HTMLAttributes<HTMLHeadingElement> { }
+  extends React.HTMLAttributes<HTMLHeadingElement> {}
 
 EmptyPlaceholder.Title = function EmptyPlaceholderTitle({
   className,
@@ -62,7 +62,7 @@ EmptyPlaceholder.Title = function EmptyPlaceholderTitle({
 }
 
 interface EmptyPlacholderDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement> { }
+  extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 EmptyPlaceholder.Description = function EmptyPlaceholderDescription({
   className,

@@ -1,10 +1,10 @@
 import Link from "next/link"
+import { TvIcon, WrapText } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { UserAuthForm } from "@/components/user-auth-form"
-import { TvIcon, WrapText } from "lucide-react"
 import { MainNav } from "@/components/main-nav"
+import { UserAuthForm } from "@/components/user-auth-form"
 
 export const metadata = {
   title: "Create an account",
@@ -21,14 +21,15 @@ export default function RegisterPage() {
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
               "px-4"
-            )}>
+            )}
+          >
             Login
           </Link>
         </div>
       </MainNav>
       <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div className="h-full flex justify-center items-center">
-          <h1 className="font-heading font-extrabold text-xl sm:text-1xl md:text-3xl lg:text-5xl">
+        <div className="flex h-full items-center justify-center">
+          <h1 className="sm:text-1xl font-heading text-xl font-extrabold md:text-3xl lg:text-5xl">
             Sign Up with your favourite provider
           </h1>
         </div>

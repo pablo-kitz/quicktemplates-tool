@@ -1,23 +1,22 @@
 import Link from "next/link"
-
-import { cn } from "@/lib/utils"
-import { SiteFooter } from "@/components/site-footer"
-import { MainNav } from "@/components/main-nav"
-import { UserAccountNav } from "@/components/user-account-nav"
-import { getCurrentUser } from "@/lib/session"
 import { notFound, redirect } from "next/navigation"
-import { DocCreate } from "@/components/doc-create"
-import { DocItem } from "@/components/doc-item"
+
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
-
+import { getCurrentUser } from "@/lib/session"
+import { DocCreate } from "@/components/doc-create"
+import { DocItem } from "@/components/doc-item"
+import { MainNav } from "@/components/main-nav"
+import { SiteFooter } from "@/components/site-footer"
+import { UserAccountNav } from "@/components/user-account-nav"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
-export default async function DashboardLayout({ children }: DashboardLayoutProps) {
-
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
   const user = await getCurrentUser()
 
   if (!user) {
@@ -35,10 +34,10 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   })
 
   return (
-    <div className="flex min-h-screen flex-col transition duration-700 dark:bg-none relative">
+    <div className="relative flex min-h-screen flex-col transition duration-700 dark:bg-none">
       <MainNav>
         {documents?.length ? (
-          <div className="grow overflow-x-auto flex flex-nowrap gap-4 scroll-smooth p-2">
+          <div className="flex grow flex-nowrap gap-4 overflow-x-auto scroll-smooth p-2">
             {documents?.map((item, index) => (
               <DocItem key={index} doc={item} />
             ))}
@@ -54,7 +53,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
           />
         </div>
       </MainNav>
-      <div className="flex-1 flex flex-col container gap-6">
+      <div className="container flex flex-1 flex-col gap-6">
         {children}
         <DocCreate />
       </div>

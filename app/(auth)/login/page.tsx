@@ -1,11 +1,11 @@
 import { Metadata } from "next"
 import Link from "next/link"
+import { ChevronLeft, WrapText } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { UserAuthForm } from "@/components/user-auth-form"
-import { ChevronLeft, WrapText } from "lucide-react"
 import { MainNav } from "@/components/main-nav"
+import { UserAuthForm } from "@/components/user-auth-form"
 
 export const metadata: Metadata = {
   title: "Login",
@@ -19,10 +19,8 @@ export default function LoginPage() {
         <div className="ml-auto">
           <Link
             href="/"
-            className={cn(
-              buttonVariants({ variant: "ghost" }),
-              "px-4"
-            )}>
+            className={cn(buttonVariants({ variant: "ghost" }), "px-4")}
+          >
             <ChevronLeft className="mr-2 h-4 w-4" />
             Back
           </Link>
