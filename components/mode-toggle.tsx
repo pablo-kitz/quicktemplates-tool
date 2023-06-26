@@ -1,5 +1,6 @@
 "use client"
 
+import { HTMLAttributes } from "react"
 import { Laptop, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -13,7 +14,11 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
 
-export function ModeToggle({ className }: { className: string }) {
+export function ModeToggle({
+  className,
+}: {
+  className?: HTMLAttributes<HTMLElement>["className"]
+}) {
   const { setTheme } = useTheme()
 
   return (

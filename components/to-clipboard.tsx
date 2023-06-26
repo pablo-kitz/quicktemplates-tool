@@ -1,19 +1,18 @@
 "use client"
 
-import { useState } from "react"
+import { HTMLAttributes, useState } from "react"
 import { Check, ClipboardType } from "lucide-react"
 
 import { toast } from "@/hooks/use-toast"
 
 import { Button } from "./ui"
 
-export function ToClipboard({
-  output,
-  className,
-}: {
+type ToClipboardProps = {
   output: string
-  className: string
-}) {
+  className?: HTMLAttributes<HTMLElement>["className"]
+}
+
+export function ToClipboard({ output, className }: ToClipboardProps) {
   const [isCopied, setIsCopied] = useState(false)
 
   const handleClipboard = async () => {
