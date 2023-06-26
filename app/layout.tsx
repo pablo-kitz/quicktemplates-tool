@@ -54,7 +54,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider>
-          <TooltipProvider>
+          <TooltipProvider delayDuration={200}>
             <BackgroundDecoration />
             {children}
             <Toaster />
