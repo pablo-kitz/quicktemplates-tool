@@ -156,6 +156,7 @@ export function DocCreate() {
                   </div>
                   {placeholders.map((p, i) => (
                     <Button
+                      key={i}
                       disabled
                       variant="outline"
                       size="xs"
