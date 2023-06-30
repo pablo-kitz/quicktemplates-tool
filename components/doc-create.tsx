@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { MouseEventHandler, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { LucideLoader, PlusCircleIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
@@ -65,6 +65,14 @@ export function DocCreate() {
       textareaRef.current.focus()
     } else {
       throw new Error("text or ref not present")
+    }
+  }
+
+  const repeatPlaceholder = (e: { name: string }) => {
+    if (textareaRef.current) {
+      textareaRef.current.value = textareaRef.current?.value.concat(
+        ` {${e.name}} `
+      )
     }
   }
 
@@ -157,7 +165,7 @@ export function DocCreate() {
                   {placeholders.map((p, i) => (
                     <Button
                       key={i}
-                      disabled
+                      onClick={() => repeatPlaceholder(p)}
                       variant="outline"
                       size="xs"
                       className={cn("rounded-full text-xs px-2 ")}
@@ -165,6 +173,10 @@ export function DocCreate() {
                       {p.name}
                     </Button>
                   ))}
+                  <HelpTooltip
+                    tooltipText="Repeat a placeholder on the text by clicking on its name"
+                    className="ml-auto"
+                  />
                 </div>
               </>
             )}

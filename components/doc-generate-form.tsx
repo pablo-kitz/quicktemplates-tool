@@ -30,7 +30,7 @@ export default function DocumentGenerateForm({
       if (data[key] == undefined || data[key] == "") {
         throw new Error("undefined value")
       }
-      output = output.replace(`{${key}}`, data[key])
+      output = output.replaceAll(`{${key}}`, data[key])
     }
     setOutput(output)
   }
