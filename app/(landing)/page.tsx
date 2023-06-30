@@ -58,7 +58,7 @@ export default async function LandingPage() {
             Text templating for
           </h1>
           <LandingAnimation strings={forStrings} />
-          <p className="max-w-[42rem] leading-normal text-foreground sm:text-xl sm:leading-8">
+          <p className="max-w-[42rem] leading-normal text-foreground p-6 sm:text-xl sm:leading-8">
             Sharing features and multiple types of placeholders coming soon.
             Follow along on Github.
           </p>
@@ -88,7 +88,7 @@ export default async function LandingPage() {
       </section>
       <section
         id="features"
-        className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24"
+        className="container space-y-6 bg-muted py-8 dark:bg-transparent md:py-12 lg:py-24"
       >
         <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
