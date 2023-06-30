@@ -80,6 +80,7 @@ export function DocDelete({ document }: DocDeleteProps) {
                 if (deleted) {
                   setIsDeleteLoading(false)
                   setShowDeleteAlert(false)
+                  router.refresh()
                   router.push("/dashboard")
                 } else {
                   setIsDeleteLoading(false)
