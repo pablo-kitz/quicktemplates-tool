@@ -27,7 +27,7 @@ export default function LandingAnimation({ strings }: LandingAnimationProps) {
   return (
     <h1
       className={cn(
-        "font-heading text-3xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl transition duration-500",
+        "font-heading text-2xl font-extrabold sm:text-4xl md:text-5xl lg:text-6xl transition duration-500",
         { "opacity-100": visible, "opacity-0": !visible }
       )}
     >

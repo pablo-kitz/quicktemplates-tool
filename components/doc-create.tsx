@@ -155,16 +155,14 @@ export function DocCreate() {
                     Placeholders:
                   </div>
                   {placeholders.map((p, i) => (
-                    <button
+                    <Button
                       disabled
-                      className={cn(
-                        buttonVariants({ variant: "outline", size: "xs" }),
-                        "rounded-full text-xs px-2 "
-                      )}
-                      key={i}
+                      variant="outline"
+                      size="xs"
+                      className={cn("rounded-full text-xs px-2 ")}
                     >
                       {p.name}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </>
@@ -179,18 +177,14 @@ export function DocCreate() {
                   <LucideLoader className="animate-spin" />
                 </Button>
               ) : (
-                <button
+                <Button
                   type="submit"
                   onClick={handleSubmit(onSubmit)}
-                  className={cn(
-                    buttonVariants({
-                      variant: isValid ? "default" : "outline",
-                    }),
-                    !isValid && "text-muted-foreground"
-                  )}
+                  variant={isValid ? "default" : "outline"}
+                  className={cn(!isValid && "text-muted-foreground")}
                 >
                   Save Document
-                </button>
+                </Button>
               )}
             </div>
           </form>

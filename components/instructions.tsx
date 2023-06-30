@@ -4,7 +4,7 @@ import { Button } from "./ui"
 
 export default function Instructions() {
   return (
-    // TODO: Arreglar para que ocupe toda la altura, algo esta fallando
+    // TODO: Tool explanation should be on landing page
     <>
       <div className="select-none">
         This tool is made to simplify commonly used text templates
@@ -14,10 +14,6 @@ export default function Instructions() {
         <Button aria-hidden variant="secondary" size="icon" disabled={true}>
           <PlusCircleIcon />
         </Button>
-      </div>
-      {/* TODO: Solo mostrar lo siguiente si no hay docs */}
-      <div className="flex select-none items-center justify-center gap-2">
-        Or selecting one from your personal library
       </div>
     </>
   )

@@ -2,18 +2,9 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Document } from "@/types"
 import { WrapText } from "lucide-react"
 
-import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-
-// TODO: Dudas de si va a hacer falta, probablemente no
-// import { useSelectedLayoutSegment } from "next/navigation"
-import { buttonVariants } from "./ui"
-
-// TODO: Ver si es necesario agregar el MobileNav
-// import { MobileNav } from "@/components/mobile-nav"
 
 interface MainNavProps {
   isLanding?: boolean
@@ -35,16 +26,12 @@ export function MainNav({
         )}
       >
         {!isLanding && (
-          <Link
-            href="/"
-            // className={cn(buttonVariants({ variant: "outline" }), "grow-0 h-10 w-10")}
-          >
+          <Link href="/">
             <WrapText
               className={cn("mx-auto h-10 w-10 rounded-full border p-2")}
             />
           </Link>
         )}
-        {/* TODO: Interesante lógica de menu mobile con su propio children con los items y su estilo `DocsSidebarNav` */}
         {children}
       </nav>
     </header>

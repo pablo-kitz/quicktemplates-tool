@@ -76,7 +76,7 @@ export default function DocumentGenerateForm({
       <>
         {output && (
           <div className="relative w-full mx-auto flex h-full flex-1 flex-col gap-6 rounded">
-            <div className="w-full whitespace-pre-line bg-muted rounded-xl border p-4 text-base shadow sm:text-sm">
+            <div className="w-full whitespace-pre-line bg-muted rounded-xl border p-4 text-lg shadow sm:text-base lg:text-lg">
               {output}
             </div>
             <ToClipboard output={output} className="absolute right-2 top-2" />

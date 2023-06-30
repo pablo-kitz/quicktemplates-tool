@@ -1,4 +1,3 @@
-// TODO: definir implementacion gradual
 import { notFound, redirect } from "next/navigation"
 import { Document, User } from "@prisma/client"
 

@@ -36,11 +36,6 @@ export const metadata = {
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-  // TODO: Add following metadata:
-  // openGraph
-  // twitter
-  // icons
-  // manifest
   icons: "../public/favicon.svg",
 }
 

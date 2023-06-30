@@ -27,15 +27,26 @@ export default async function LandingLayout({ children }: LandingLayoutProps) {
               }}
             />
           ) : (
-            <Link
-              href="/login"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "sm" }),
-                "px-4"
-              )}
-            >
-              Login
-            </Link>
+            <>
+              <Link
+                href="/login"
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "sm" }),
+                  "px-4 mr-2"
+                )}
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "sm" }),
+                  "px-4"
+                )}
+              >
+                Register
+              </Link>
+            </>
           )}
         </div>
       </MainNav>

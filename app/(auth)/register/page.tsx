@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { TvIcon, WrapText } from "lucide-react"
+import { WrapText } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
@@ -27,9 +27,10 @@ export default function RegisterPage() {
           </Link>
         </div>
       </MainNav>
-      <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <div className="container grid h-full w-full flex-1 flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="flex h-full items-center justify-center">
-          <h1 className="sm:text-1xl font-heading text-xl font-extrabold md:text-3xl lg:text-5xl">
+          {/* TODO: Better Register Text */}
+          <h1 className="sm:text-1xl font-heading text-xl p-6 font-extrabold md:text-3xl lg:text-5xl">
             Sign Up with your favourite provider
           </h1>
         </div>

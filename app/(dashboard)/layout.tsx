@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { notFound, redirect } from "next/navigation"
+import { redirect } from "next/navigation"
 
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"

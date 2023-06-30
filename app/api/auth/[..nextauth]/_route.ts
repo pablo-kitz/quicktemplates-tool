@@ -1,4 +1,3 @@
-// TODO: generar lib/auth / Entender que hace
 import NextAuth from "next-auth"
 
 import { authOptions } from "@/lib/auth"

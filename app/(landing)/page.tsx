@@ -39,23 +39,22 @@ export default async function LandingPage() {
 
   return (
     <>
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-28">
+      <section className="space-y-6 py-4 md:py-8 lg:py-16">
         <div className="mx-auto flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <WrapText
             className={cn(
               "mx-auto h-16 w-16 rounded-full border p-2 text-foreground"
             )}
           />
-          <h1 className="font-heading text-3xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="font-heading text-3xl font-extrabold sm:text-4xl md:text-5xl lg:text-6xl">
             Text templating for
-            <LandingAnimation strings={forStrings} />
           </h1>
+          <LandingAnimation strings={forStrings} />
           <p className="max-w-[42rem] leading-normal text-foreground sm:text-xl sm:leading-8">
             Sharing features and multiple types of placeholders coming soon.
             Follow along on Github.
           </p>
           <div className="space-x-4">
-            {/* TODO: Migrate to components with state to remove use client user-auth-form as reference */}
             <Link
               href="/dashboard"
               className={cn(
@@ -79,7 +78,7 @@ export default async function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="open-source" className="container py-8 md:py-12 lg:py-16">
+      <section id="open-source" className="container py-6 md:py-10 lg:py-12">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
             Open Source
