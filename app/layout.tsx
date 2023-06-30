@@ -2,8 +2,6 @@ import { Montserrat as FontSans } from "next/font/google"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import BackgroundDecoration from "@/components/bg-decoration"
-import { SiteFooter } from "@/components/site-footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster, TooltipProvider } from "@/components/ui"
 
@@ -50,7 +48,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ThemeProvider>
           <TooltipProvider delayDuration={200}>
-            <BackgroundDecoration />
             {children}
             <Toaster />
           </TooltipProvider>
