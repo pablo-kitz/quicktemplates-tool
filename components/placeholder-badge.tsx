@@ -50,7 +50,7 @@ export function PlaceholderBadge({
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Placeholder</AlertDialogTitle>
             <AlertDialogDescription>
-              This action will delete this placeholder and all of it's
+              This action will delete this placeholder and all of it&apos;s
               instances.
             </AlertDialogDescription>
           </AlertDialogHeader>
