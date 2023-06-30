@@ -1,40 +1,58 @@
-import {Button} from "@/components/ui/button";
-import "./globals.css";
+import { Montserrat as FontSans } from "next/font/google"
+
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster, TooltipProvider } from "@/components/ui"
+
+import "@/styles/globals.css"
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
 export const metadata = {
-	title: "Quicktemplates Tool",
-	description: "Generate your own document templates.",
-};
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: ["Next.js", "Templating", "React", "Tailwind CSS"],
+  authors: [
+    {
+      name: "Pablo Kitzberger",
+      url: siteConfig.links.githubProfile,
+    },
+  ],
+  creator: "Pablo Kitzberger",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  icons: "../public/favicon.svg",
+}
 
-import {Roboto} from "next/font/google";
-import {Github, Linkedin} from "lucide-react";
-const roboto = Roboto({weight: "400", style: "normal", subsets: ["latin"]});
-
-export default function RootLayout({children}: {children: React.ReactNode}) {
-	return (
-		<html lang="en">
-			<body className={roboto.className}>
-				<main className="dark:bg-gray-900/75 flex h-full min-h-screen flex-col bg-white transition duration-700 dark:bg-none">
-					{children}
-					<div className="flex h-12 w-full items-center justify-start gap-4 justify-self-end bg-neutral-800 px-4 text-white md:px-8">
-						<a
-							href="https://github.com/pablo-kitz"
-							target="_blank"
-							rel="noopener noreferrer">
-							<Button size="sm">
-								<Github />
-							</Button>
-						</a>
-						<a
-							href="https://www.linkedin.com/in/pablo-kitzberger/"
-							target="_blank"
-							rel="noopener noreferrer">
-							<Button size="sm">
-								<Linkedin />
-							</Button>
-						</a>
-					</div>
-				</main>
-			</body>
-		</html>
-	);
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider>
+          <TooltipProvider delayDuration={200}>
+            {children}
+            <Toaster />
+          </TooltipProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
 }
