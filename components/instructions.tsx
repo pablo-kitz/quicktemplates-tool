@@ -1,15 +1,22 @@
-import { PlusCircleIcon } from "lucide-react"
 
-import { Button } from "./ui"
+import { ArrowDownRight } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+import { buttonVariants } from "./ui"
 
 export default function Instructions() {
   return (
     <>
       <div className="flex select-none items-center justify-center gap-2">
         To start, try creating a document
-        <Button aria-hidden variant="secondary" size="icon" disabled={true}>
-          <PlusCircleIcon />
-        </Button>
+        <ArrowDownRight
+          aria-disabled
+          className={cn(
+            buttonVariants({ variant: "secondary", size: "icon" }),
+            "text-muted-foreground"
+          )}
+        />
       </div>
     </>
   )

@@ -21,7 +21,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           <Github />
         </Link>
         <Link
-          href={siteConfig.links.githubProfile}
+          href={siteConfig.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "")}

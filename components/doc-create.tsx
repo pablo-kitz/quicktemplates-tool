@@ -1,8 +1,9 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { MouseEventHandler, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
-import { LucideLoader, PlusCircleIcon } from "lucide-react"
+import { LucideLoader, PlusCircleIcon, X } from "lucide-react"
+
 import { useForm } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
@@ -11,6 +12,9 @@ import { toast } from "@/hooks/use-toast"
 
 import { HelpTooltip } from "./help-tooltip"
 import { PlaceholderAdder } from "./placeholder-adder"
+
+import { PlaceholderBadge } from "./placeholder-badge"
+
 import {
   Button,
   buttonVariants,
@@ -68,6 +72,27 @@ export function DocCreate() {
     }
   }
 
+  const repeatPlaceholder = (e: { name: string }) => {
+    if (textareaRef.current) {
+      textareaRef.current.value = textareaRef.current?.value.concat(
+        ` {${e.name}} `
+      )
+    }
+  }
+
+  const deletePlaceholder = (e: { name: string }) => {
+    //TODO: should prompt deletion sing a modal
+    if (textareaRef.current) {
+      const updatedPlaceholders = placeholders.filter(
+        (obj) => obj.name !== e.name
+      )
+      textareaRef.current.value = textareaRef.current?.value.replaceAll(
+        `{${e.name}}`,
+        ""
+      )
+      setPlaceholders(updatedPlaceholders)
+    }
+  }
   const onSubmit = async (data: FormValues) => {
     setIsLoading(true)
 
@@ -93,6 +118,7 @@ export function DocCreate() {
       })
     }
     setSlideover(false)
+    router.refresh()
     router.push("/dashboard")
   }
 
@@ -100,12 +126,12 @@ export function DocCreate() {
     <>
       <Sheet open={slideover} onOpenChange={setSlideover}>
         <SheetTrigger>
-          <Button
-            className="absolute bottom-16 right-6 bg-secondary-foreground"
-            size="icon"
-          >
-            <PlusCircleIcon className="h-full w-full p-2 text-secondary" />
-          </Button>
+          <PlusCircleIcon
+            className={cn(
+              "absolute bottom-16 right-6 bg-secondary-foreground h-full w-full p-2 text-secondary",
+              buttonVariants({ size: "icon" })
+            )}
+          />
         </SheetTrigger>
         <SheetContent className="flex flex-col w-full sm:w-2/3 xl:w-1/2">
           <SheetHeader>
@@ -142,12 +168,12 @@ export function DocCreate() {
                   textareaRef.current = e
                 }}
               />
-              {errors?.text && (
-                <span className="text-xs text-destructive">
-                  This field is required
-                </span>
-              )}
             </div>
+            {errors?.text && (
+              <span className="text-xs text-destructive">
+                This field is required
+              </span>
+            )}
             {placeholders.length > 0 && (
               <>
                 <div className="flex gap-2 items-center">
@@ -155,16 +181,17 @@ export function DocCreate() {
                     Placeholders:
                   </div>
                   {placeholders.map((p, i) => (
-                    <Button
+                    <PlaceholderBadge
+                      p={p}
                       key={i}
-                      disabled
-                      variant="outline"
-                      size="xs"
-                      className={cn("rounded-full text-xs px-2 ")}
-                    >
-                      {p.name}
-                    </Button>
+                      deletePlaceholder={deletePlaceholder}
+                      repeatPlaceholder={repeatPlaceholder}
+                    />
                   ))}
+                  <HelpTooltip
+                    tooltipText="Repeat a placeholder on the text by clicking on its name"
+                    className="ml-auto"
+                  />
                 </div>
               </>
             )}

@@ -16,7 +16,8 @@ export function DocItem({ doc }: DocItemProps) {
     <>
       <Link
         href={`/${doc.id}`}
-        className={cn("font-semibold hover:underline", buttonVariants())}
+        className={cn("font-semibold", buttonVariants())}
+
       >
         {doc.title}
       </Link>
