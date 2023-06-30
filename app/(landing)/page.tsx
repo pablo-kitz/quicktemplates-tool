@@ -73,7 +73,7 @@ export default async function LandingPage() {
               Get Started
             </Link>
             <Link
-              href={siteConfig.links.githubProfile}
+              href={siteConfig.links.githubRepo}
               target="_blank"
               rel="noreferrer"
               className={cn(
