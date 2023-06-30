@@ -3,6 +3,7 @@
 import { MouseEventHandler, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { LucideLoader, PlusCircleIcon, X } from "lucide-react"
+
 import { useForm } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
@@ -11,7 +12,9 @@ import { toast } from "@/hooks/use-toast"
 
 import { HelpTooltip } from "./help-tooltip"
 import { PlaceholderAdder } from "./placeholder-adder"
+
 import { PlaceholderBadge } from "./placeholder-badge"
+
 import {
   Button,
   buttonVariants,
@@ -90,7 +93,6 @@ export function DocCreate() {
       setPlaceholders(updatedPlaceholders)
     }
   }
-
   const onSubmit = async (data: FormValues) => {
     setIsLoading(true)
 

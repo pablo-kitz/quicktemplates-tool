@@ -1,8 +1,9 @@
-import { ArrowDownRight, PlusCircleIcon } from "lucide-react"
+
+import { ArrowDownRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-import { Button, buttonVariants } from "./ui"
+import { buttonVariants } from "./ui"
 
 export default function Instructions() {
   return (

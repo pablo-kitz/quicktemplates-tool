@@ -59,6 +59,7 @@ export default async function LandingPage() {
           </h1>
           <LandingAnimation strings={forStrings} />
           <p className="max-w-[42rem] leading-normal text-foreground p-6 sm:text-xl sm:leading-8">
+
             Sharing features and multiple types of placeholders coming soon.
             Follow along on Github.
           </p>
