@@ -100,12 +100,12 @@ export function DocCreate() {
     <>
       <Sheet open={slideover} onOpenChange={setSlideover}>
         <SheetTrigger>
-          <Button
-            className="absolute bottom-16 right-6 bg-secondary-foreground"
-            size="icon"
-          >
-            <PlusCircleIcon className="h-full w-full p-2 text-secondary" />
-          </Button>
+          <PlusCircleIcon
+            className={cn(
+              "absolute bottom-16 right-6 bg-secondary-foreground h-full w-full p-2 text-secondary",
+              buttonVariants({ size: "icon" })
+            )}
+          />
         </SheetTrigger>
         <SheetContent className="flex flex-col w-full sm:w-2/3 xl:w-1/2">
           <SheetHeader>
